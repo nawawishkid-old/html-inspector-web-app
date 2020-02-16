@@ -1,0 +1,7 @@
+mixin window(id, title, isActive = true)
+  .window(id=id class=isActive && 'active')
+    header
+      h4.title= title
+    .body
+      if block
+        block

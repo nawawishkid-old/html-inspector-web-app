@@ -1,0 +1,40 @@
+include pug/mixins/window.pug
+
+head
+  meta(name="charset" content="utf-8")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+  link(rel="stylesheet", href="index.scss")
+
+body
+  main#app
+    +window('ast', 'AST')
+    +window('inspector', 'Inspector')
+      .tree
+    +window('html', 'HTML')
+    +window('web', 'Web')
+      iframe
+
+  script(type="text/template" data-ejs-template="tree")
+    | <% if (tree.children && tree.children.length) { %>
+    |   <% tree.children.forEach(item => { %>
+    |     <%- include('item', { item }); %>
+    |   <% }); %>
+    | <% } %>
+  script(type="text/template" data-ejs-template="item")
+    .item
+      | <% if (item.position) { %>
+      |   <div 
+      |     data-item-position="<%= item.position.start.line %>,<%= item.position.start.column %>:<%= item.position.end.line %>,<%= item.position.end.column %>"></div>
+      | <% } %>
+      .item-header
+        span.item-type
+          //- | <% console.log(item); %>
+          | <% const type = item.tagName || item.type; %>
+          | <%= type[0].toUpperCase() + type.slice(1) %>
+        .item-header-label
+      | <% if (item.children && item.children.length) { %>
+      .item-children
+        .item-children-hider
+        | <%- include('tree', { tree: item }); %>
+      | <% } %>
+  script(src="js/index.js")
