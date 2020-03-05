@@ -21,20 +21,53 @@ body
     |   <% }); %>
     | <% } %>
   script(type="text/template" data-ejs-template="item")
+    | <% if (item.type === 'text') { %>
+    .text
+      | <%= item.value %>
+    | <% } else { %>
     .item
       | <% if (item.position) { %>
       |   <div 
       |     data-item-position="<%= item.position.start.line %>,<%= item.position.start.column %>:<%= item.position.end.line %>,<%= item.position.end.column %>"></div>
       | <% } %>
-      .item-header
-        span.item-type
-          //- | <% console.log(item); %>
-          | <% const type = item.tagName || item.type; %>
-          | <%= type[0].toUpperCase() + type.slice(1) %>
-        .item-header-label
+      | <%- include('item/headers/common', { item }); _%>   
       | <% if (item.children && item.children.length) { %>
       .item-children
         .item-children-hider
         | <%- include('tree', { tree: item }); %>
       | <% } %>
+    | <% } %>
+  script(type="text/template" data-ejs-template="item/headers/common")
+    .item-header
+        span.item-type.
+          <%_ const type = item.tagName || item.type; _%>
+          <%= type[0].toUpperCase() + type.slice(1) _%>
+        | <%_ if (item.properties) { _%>
+        | <%_   const { id, className, ...otherProps } = item.properties; _%>
+        | <%_   if (id) { _%>
+        span.item-id.
+          <%=     '#' + id _%>
+        | <%_   } _%>
+        | <%_   if (className) { _%>
+        span.item-class.
+          <%=     '.' + className.join('.'); %>
+        | <%_   } _%>
+        | <%_   const propsArray = Object.entries(otherProps); _%>
+        | <%_   if (propsArray.length) { %>
+        | <span class="item-props">
+        |   <span class="item-props-bracket">(</span>
+        | <%_   propsArray.forEach(([key, value]) => { _%>
+        |   <span class="item-prop" data-prop-name="<%= key %>">
+        |     <span class="item-prop-key"><%= key %></span>
+        |     <span class="item-props-equal">=</span>
+        |     <span class="item-props-quote">"</span>
+        |     <span class="item-prop-value"><%= value %></span>
+        |     <span class="item-props-quote">"</span>
+        |   </span>
+        | <%_   }); _%>
+        |   <span class="item-props-bracket">)</span>
+        | </span>
+        | <%_ } %>
+        | <%_ } %>
+        .item-header-label
   script(src="js/index.js")
