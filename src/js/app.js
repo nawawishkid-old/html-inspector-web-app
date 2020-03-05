@@ -115,30 +115,47 @@ function renderInspector(inspector, ast) {
   inspector.render(result);
 }
 
-const defaultCodes = `<html>
-  <head>
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      
-      html, body {
-        width: 100%;
-        margin: 0;
-      }
-      
-      h1 {
-        color: red;
-        background-color: black;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Hello, strangerrrr!!!</h1>
-    <script>
-      function greet(name) { console.log(\`Hello \${name}\`); }
+const defaultCodes = `<html class="one two three">
+<head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-      greet('DevPed.io!!!');
-    </script>
-  </body>
-</html>`;
+    html,
+    body {
+      width: 100%;
+      margin: 0;
+    }
+
+    h1 {
+      color: red;
+      background-color: black;
+    }
+  </style>
+</head>
+<body class="body">
+  <header>
+    <nav>
+      <ul>
+        <a href="chrome-extension://klbibkeccnjlkjkiokjodocebajanakg/suspended.html#ttl=Remove%20console.log()%20Statements%20from%20Production%20JavaScript%20Apps&pos=0&uri=https://blog.benestudio.co/remove-console-log-statements-from-production-javascript-apps-7376adc89c7a"><li>Home</li></a>
+        <a href="/contact"><li>Contact</li></a>
+        <a href="/about"><li>About</li></a>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="content">
+    <h1 id="hello" class="heading">Hello, strangerrrr!!!</h1>
+  </main>
+
+  <script>
+    function greet(name) {
+      console.log(\`Hello \${name}\`);
+    }
+
+    greet("DevPed.io!!!");
+  </script>
+</body>
+</html>
+`;
