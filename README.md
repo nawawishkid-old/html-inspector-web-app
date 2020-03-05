@@ -2,6 +2,9 @@
 
 Just exploring AST-related stuff and `codemirror`
 
+![Screenshot 1](./preview/screenshot-1.png)
+![Preview](./preview/preview-1.gif)
+
 ```
 yarn run dev
 ```
