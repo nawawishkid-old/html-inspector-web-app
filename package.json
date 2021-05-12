@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "codemirror": "^5.51.0",
+    "codemirror": "^5.58.2",
     "ejs": "^3.0.1",
     "lodash-es": "^4.17.15",
     "pubsub-js": "^1.8.0",
