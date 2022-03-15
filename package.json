@@ -6,7 +6,7 @@
   "dependencies": {
     "codemirror": "^5.51.0",
     "ejs": "^3.0.1",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "pubsub-js": "^1.8.0",
     "rehype": "^9.0.1",
     "rehype-format": "^3.0.0",
